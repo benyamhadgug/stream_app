@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, AfterContentChecked } from '@angular/core';
 import axios from "axios";
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
+import { of as ObservableOf } from 'rxjs';
 import config from './../../config/default';
 
 @Component({
@@ -26,12 +27,11 @@ export class LivestreamsComponent implements OnInit , OnChanges, AfterContentChe
   }
 
   ngAfterContentChecked(){
-    this.stream$ =this._state.live_streams;
-
+    
   }
 
   ngOnChanges() {
-    
+  
   }
   getLiveStreams() {
     axios.get('http://127.0.0.1:' + config.rtmp_server.http.port + '/api/streams')
@@ -44,28 +44,32 @@ export class LivestreamsComponent implements OnInit , OnChanges, AfterContentChe
         });
   }
   getStreamsInfo(live_streams) {
-    axios.get('http://127.0.0.1:3333/api/streams/info/', {
+    axios.get('http://127.0.0.1:3333/streams/info', {
       // axios.get('http://127.0.0.1:' + config.rtmp_server.http.port  + '/streams', {
 
         params: {
             streams: live_streams
         }
-    }).then(function(res){
+    }).then((res) =>{
       console.log(`state red data`,res.data);
-
-          this._state = {
-            live_streams: res.data
-          };
+      this.stateUpdate(res.data);
+          // this._state = {
+          //   live_streams: res.data
+          // };
                   // live_streams: res.data
         }, () => {
             console.log(`state`,this._state);
+        
         });
   }
   
-  setState(lv:[]){
+  stateUpdate(lv:any){
     this._state = {
       live_streams: lv
     };
+    console.log(`state`,this._state);
+    this.stream$ =ObservableOf(this._state.live_streams);
+
   }
  
 }

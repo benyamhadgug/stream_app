@@ -3,9 +3,9 @@
     <hr className="my-4"/>
 
     <div className="streams row">
-        <!-- {streams} -->
+        <!-- {streams} --> 
 
-        <div *ngFor="let stream of stream$; index as indx" className="stream col-xs-12 col-sm-12 col-md-3 col-lg-4" key={indx}>
+        <div *ngFor="let stream of stream$ | async" className="stream col-xs-12 col-sm-12 col-md-3 col-lg-4">
             <span className="live-label">LIVE</span>
             <!-- <Link to={'/stream/' + stream.username}>
                 <div className="stream-thumbnail">
@@ -18,7 +18,7 @@
                     {stream.username}
                 </Link>
             </span> -->
-            {{stream$}}
+            {{stream.username}}
         </div>
     </div>
 </div>
