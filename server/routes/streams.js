@@ -18,8 +18,9 @@ router.get('/info',
                 if (!streams.hasOwnProperty(stream)) continue;
                 query.$or.push({stream_key : stream});
             }
+            console.log(`query>>>>>::`,query);
 
-            User.find({password:"1234"},(err, users) => {
+            User.find(query,(err, users) => {
 
                 if (err){
                     res.json({success:0, err});

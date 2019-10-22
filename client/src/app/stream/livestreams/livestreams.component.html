@@ -1,0 +1,25 @@
+<div className="container mt-5">
+    <h4>Live Streams</h4>
+    <hr className="my-4"/>
+
+    <div className="streams row">
+        <!-- {streams} --> 
+
+        <div *ngFor="let stream of stream$ | async" className="stream col-xs-12 col-sm-12 col-md-3 col-lg-4">
+            <span className="live-label">LIVE</span>
+            <a [routerLink]="['/stream', stream.username]">
+                <div className="stream-thumbnail">
+                    <!-- <img src='thumbnails/' + '{{stream.username}}' + '.png'/> -->
+                    <img src='/src/assets/img/thumbnails/download.png'/>
+                </div>
+            </a>
+        
+            <span className="username">
+                <a [routerLink]="['/stream', stream.username]">
+                    {{stream.username}}
+                </a>
+            </span>
+            {{stream.username}}
+        </div>
+    </div>
+</div>

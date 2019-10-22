@@ -3,7 +3,7 @@ const express = require('express'),
     User = require('../database/Schema').User;
 
 router.get('/',
-    require('connect-ensure-login').ensureLoggedIn(),
+    // require('connect-ensure-login').ensureLoggedIn(),
     (req, res) => {
 
         if(req.query.username){

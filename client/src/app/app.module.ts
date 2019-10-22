@@ -3,28 +3,25 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { VideoJsComponent } from './video-js/video-js.component';
 import { MatToolbarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {FlexLayoutModule} from '@angular/flex-layout';
-import { LivestreamsComponent } from './livestreams/livestreams.component';
 import { SettingsComponent } from './settings/settings.component';
-import { ThumbnailsComponent } from './livestreams/thumbnails.component';
+import { StreamModule } from './stream/stream.module';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    VideoJsComponent,
-    LivestreamsComponent,
-    SettingsComponent,
-    ThumbnailsComponent
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MatToolbarModule
+    MatToolbarModule,
+    StreamModule
   ],
   providers: [],
   bootstrap: [AppComponent]

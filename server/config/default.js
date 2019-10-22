@@ -13,7 +13,7 @@ const config = {
         },
         http: {
             port: 8888,
-            mediaroot: './server/media',
+            mediaroot: './media',
             allow_origin: '*'
         },
         trans: {
