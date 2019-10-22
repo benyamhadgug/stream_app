@@ -1,15 +1,3 @@
-(function() {
-    var childProcess = require("child_process");
-    var oldSpawn = childProcess.spawn;
-    function mySpawn() {
-        console.log('spawn called');
-        console.log(arguments);
-        var result = oldSpawn.apply(this, arguments);
-        return result;
-    }
-    childProcess.spawn = mySpawn;
-})();
-
 const express = require('express'),
     path = require('path'),
     Session = require('express-session'),
@@ -27,18 +15,8 @@ const express = require('express'),
     cors = require('cors');
 
  
-// const MongoClient = require('mongodb').MongoClient;
 const uri = "mongodb+srv://tim:E6WRXq81xa8z2qW3@mwacluster-moqqw.mongodb.net/streaming_app_db?retryWrites=true&w=majority";
-// const client = new MongoClient(uri, { useNewUrlParser: true });
-// client.connect(err => {
-//   const collection = client.db("streaming_app_db").collection("streams_coll");
 
-//   console.log(`connected successfully to DB`);  
-
-//   collection.insert({name:"tim"});
-
-//   client.close();
-// });
 mongoose.connect(uri, { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');

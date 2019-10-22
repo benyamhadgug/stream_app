@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Routes,RouterModule } from '@angular/router';
 import { VideoJsComponent } from './video-js/video-js.component';
 import { LivestreamsComponent } from './livestreams/livestreams.component';
-import { ThumbnailsComponent } from './livestreams/thumbnails.component';
 import { StreamComponent } from './stream.component';
+import { AvatarModule } from 'ngx-avatar';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   
@@ -16,12 +17,13 @@ const routes: Routes = [
   declarations: [
     VideoJsComponent,
     LivestreamsComponent,
-    ThumbnailsComponent,
     StreamComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    HttpClientModule,
+    AvatarModule
   ]
 })
 export class StreamModule { }
