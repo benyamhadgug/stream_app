@@ -3,14 +3,17 @@ POST http://localhost:3333/login HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Ben",
+    "username": "Besdn1s",
     "password": "1234"
 }
 ###
-POST http://localhost:3333/login HTTP/1.1
+POST http://localhost:3333/register HTTP/1.1
 content-type: application/json
 
 {
-    "username": "Ben",
-    "password": "1234"
+    "username": "Besdn1s",
+    "password": "1234", 
+    "usergroup": "B", 
+    "email": "benyam@gmail.comasds", 
+    "name": "Seble Hadgu"
 }

@@ -9,6 +9,7 @@ import {
 
 import { Observable } from "rxjs";
 import { MustMatch } from './must-match.validator';
+import { JwtService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,7 @@ import { MustMatch } from './must-match.validator';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder) { 
+  constructor(private formBuilder: FormBuilder, private jwtService: JwtService) { 
   }
 
   ngOnInit() {
@@ -36,8 +37,16 @@ export class RegisterComponent implements OnInit {
   });
   }
   onSubmit() {
+    let username= this.registerForm.controls.username.value, 
+      password= this.registerForm.controls.password.value, 
+      email= this.registerForm.controls.email.value, 
+      name= this.registerForm.controls.name.value, 
+      usergroup= this.registerForm.controls.usergroup.value;
+
+    let token:any= this.jwtService.register(username, email, password, name, usergroup);
+    localStorage.setItem("access_token",token);
     this.submitted = true;
-    console.log(this.registerForm);
+    //console.log(this.registerForm);
   }
   onReset() {
     this.submitted = false;

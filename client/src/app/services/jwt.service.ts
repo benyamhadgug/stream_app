@@ -7,17 +7,17 @@ import { tap } from 'rxjs/operators';
 export class JwtService {
 
   constructor(private httpClient: HttpClient) { }
+  
   login(username:string, password:string) {
-      return this.httpClient.post<{access_token:  string}>('http://localhost:3333/login', 
-            {username, password}).pipe(tap(res => {
-                localStorage.setItem('access_token', res.access_token);
-            }))
+    console.log("before going to server: " + username + " ------- " + password);
+      return this.httpClient.post<any>('http://localhost:3333/login', {"username": username, "password":password})
+              .subscribe((data)=> { data.access_token} );
   }
   register(username: string, email:string, password:string, name: string, usergroup: string ) {
-    return this.httpClient.post<{access_token: string}>('http://localhost:3333/register', 
-        {email, password, username, name, usergroup}).pipe(tap(res => {
-          this.login(username, password); 
-      }))
+    console.log("before going to server: " + username + " ------- " + password);
+    return this.httpClient.post<any>('http://localhost:3333/register', 
+        {"email": email, "password": password, "username": username, "name": name, "usergroup": usergroup})
+        .subscribe((data)=> { data.access_token} );
   }
   logout() {
     localStorage.removeItem('access_token');
