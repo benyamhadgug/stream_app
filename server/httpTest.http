@@ -9,11 +9,10 @@ content-type: application/json
 ###
 POST http://localhost:3333/register HTTP/1.1
 content-type: application/json
-
 {
     "username": "Besdn1s",
     "password": "1234", 
     "usergroup": "B", 
-    "email": "benyam@gmail.comasds", 
+    "email": "benyam@gmail.comasds",
     "name": "Seble Hadgu"
 }
