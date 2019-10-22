@@ -10,6 +10,7 @@ import {
 import { Observable } from "rxjs";
 import { MustMatch } from './must-match.validator';
 import { JwtService } from 'src/app/services/jwt.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,9 @@ import { JwtService } from 'src/app/services/jwt.service';
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
-  constructor(private formBuilder: FormBuilder, private jwtService: JwtService) { 
+  registerError=false; 
+  errorMessage=""
+  constructor(private formBuilder: FormBuilder, private jwtService: JwtService, private router: Router) { 
   }
 
   ngOnInit() {
@@ -41,11 +44,18 @@ export class RegisterComponent implements OnInit {
       email= this.registerForm.controls.email.value, 
       name= this.registerForm.controls.name.value, 
       usergroup= this.registerForm.controls.usergroup.value;
-
-    let token:any= this.jwtService.register(username, email, password, name, usergroup);
-    localStorage.setItem("access_token",token);
     this.submitted = true;
-    //console.log(this.registerForm);
+    this.jwtService.register(username, email, password, name, usergroup)
+      .subscribe((data)=> {
+        if(parseInt(data.success) === 1) {
+          this.registerError=false; 
+          this.router.navigate(['login']); 
+        } else {
+          this.errorMessage= data.message;
+          this.registerError=true; 
+          //console.log("Registering Failed. .... " + this.errorMessage);
+        }
+      });
   }
   onReset() {
     this.submitted = false;

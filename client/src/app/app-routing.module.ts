@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './user-management/login/login.component';
 import { RegisterComponent } from './user-management/register/register.component';
 import { LogoutComponent } from './user-management/logout/logout.component';
+import { DeactivateGuard } from './guards/logout.guard';
 
 
 const routes: Routes = [

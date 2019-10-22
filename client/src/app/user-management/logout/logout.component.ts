@@ -12,12 +12,12 @@ import { Observable } from "rxjs";
 import { JwtService } from 'src/app/services/jwt.service';
 import { Router } from '@angular/router';
 
-const jwtDecode = require('jwt-decode');
+//const jwtDecode = require('jwt-decode');
 
 @Component({
   selector: 'app-logout',
   templateUrl: './logout.component.html',
-  styleUrls: ['./logout.component.css']
+  styleUrls: ['./logout.component.css'], 
 })
 export class LogoutComponent implements OnInit {
   loginForm: FormGroup;
@@ -29,26 +29,18 @@ export class LogoutComponent implements OnInit {
 
   }
   onSubmit() {
-    let token:any= null; 
-    let message: string;
-    let success:number; 
-    let user:any;
-    this.submitted = true; 
-    this.jwtService.login( this.loginForm.controls.username.value , this.loginForm.controls.password.value)
-        .subscribe((data)=> {
-          if(parseInt(data.success) === 1) {
-            localStorage.setItem ( "access_token", token );
-            localStorage.setItem("usergroup", data.user.usergroup); 
-            localStorage.setItem("username", data.user.username);
-            localStorage.setItem("name", data.user.name);
-            localStorage.setItem("email", data.user.email);
-            localStorage.setItem("stream_key", data.user.stream_key);
-            this.loginError=false; 
-            this.router.navigate(['home'])
-          }else {
-            this.loginError=true; 
-          }
-    } );
+    if(this.jwtService.loggedIn){
+      this.jwtService.logout();
+    }
+  }    
+  onLogout() {
+    this.onSubmit();
   }
   get f() { return this.loginForm.controls; }
+  canDeactivate () {
+    //return confirm("Are you sure you want to logout?");
+    //console.log('to exit logout');
+    //return true;
+
+  }
 }

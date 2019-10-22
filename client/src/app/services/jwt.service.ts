@@ -31,9 +31,17 @@ export class JwtService {
   public isLoggedIn(): boolean {
     return localStorage.getItem('access_token') !==  null;
   }
+  public isLoggeout(): boolean {
+    return localStorage.getItem('access_token') ===  null;
+  }
   public isBroadcaster(): boolean {
     if(localStorage.getItem('usergroup') ===  null)
       return false; 
     return (localStorage.getItem('usergroup') === "B");
+  }
+  public isViewer(): boolean {
+    if(localStorage.getItem('usergroup') ===  null)
+      return false; 
+    return (localStorage.getItem('usergroup') === "V");
   }
 }

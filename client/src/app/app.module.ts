@@ -15,12 +15,15 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { JwtModule } from '@auth0/angular-jwt';
+import { LogoutComponent } from './user-management/logout/logout.component';
+import { DeactivateGuard } from './guards/logout.guard';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    LogoutComponent,
     RegisterComponent,
     NavigationComponent
   ],
@@ -42,7 +45,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     BrowserAnimationsModule, 
     MatSliderModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
   ],
-  providers: [],
+  providers: [DeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
