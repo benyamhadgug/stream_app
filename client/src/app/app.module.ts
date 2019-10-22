@@ -14,6 +14,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,14 @@ import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, Mat
     AppRoutingModule, 
     HttpClientModule, 
     OAuthModule.forRoot(), 
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function  tokenGetter() {
+             return     localStorage.getItem('access_token');},
+        whitelistedDomains: ['localhost:3333'],
+        blacklistedRoutes: ['http://localhost:3333/login']
+      }
+    }),
     BrowserAnimationsModule, 
     MatSliderModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
   ],

@@ -23,11 +23,13 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      usergroup: ['V', Validators.required],
       username: ['', Validators.required],
       password: ['', Validators.required], 
       confirm_password: ['', Validators.required], 
       email: ['', [Validators.required, Validators.email]], 
-      category: ['M', Validators.required], 
+      // category: ['M', Validators.required], 
       acceptTerms: [false, Validators.requiredTrue]
     }, {
       validator: MustMatch('password', 'confirm_password')
