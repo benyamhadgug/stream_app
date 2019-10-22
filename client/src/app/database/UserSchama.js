@@ -8,9 +8,6 @@ let UserSchema = new Schema({
     email : String,
     password: String,
     stream_key : String,
-
-    name: String, 
-    usergroup: String
 });
 
 UserSchema.methods.generateHash = (password) => {

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import {
   FormGroup,
   FormControl,
@@ -14,22 +15,18 @@ import { Router } from '@angular/router';
 // const jwtDecode = require('jwt-decode');
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-logout',
+  templateUrl: './logout.component.html',
+  styleUrls: ['./logout.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LogoutComponent implements OnInit {
   loginForm: FormGroup;
   submitted = false;
   loginError=false; 
   constructor(private formBuilder: FormBuilder, private jwtService: JwtService, private router: Router) { 
   }
-
   ngOnInit() {
-    this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-  });
+
   }
   onSubmit() {
     let token:any= null; 
@@ -38,7 +35,7 @@ export class LoginComponent implements OnInit {
     let user:any;
     this.submitted = true; 
     this.jwtService.login( this.loginForm.controls.username.value , this.loginForm.controls.password.value)
-        .subscribe((data)=> { 
+        .subscribe((data)=> {
           if(parseInt(data.success) === 1) {
             localStorage.setItem ( "access_token", token );
             localStorage.setItem("usergroup", data.user.usergroup); 
@@ -52,9 +49,6 @@ export class LoginComponent implements OnInit {
             this.loginError=true; 
           }
     } );
-    
-    //var decoded = jwtDecode(token);
-    //console.log("The result token is " + token);
   }
   get f() { return this.loginForm.controls; }
 }

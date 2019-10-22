@@ -9,7 +9,11 @@ const generateStreamThumbnail = (stream_key) => {
         '-ss', '00:00:01',
         '-vframes', '1',
         '-vf', 'scale=-2:300',
+<<<<<<< HEAD
         './../thumbnails/'+stream_key+'.png',
+=======
+        'server/thumbnails/'+stream_key+'.png',
+>>>>>>> ben
     ];
 
     spawn(cmd, args, {

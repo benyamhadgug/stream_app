@@ -17,6 +17,7 @@ const express = require('express'),
  
 const uri = "mongodb+srv://tim:E6WRXq81xa8z2qW3@mwacluster-moqqw.mongodb.net/streaming_app_db?retryWrites=true&w=majority";
 
+
 mongoose.connect(uri, { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');
@@ -32,6 +33,7 @@ app.use(bodyParse.json({extended: true}));
 app.use(Session({
     store: new FileStore({
         path : 'sessions'
+
     }),
     secret: config.server.secret,
     maxAge : Date().now + (60 * 1000 * 30),

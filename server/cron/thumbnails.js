@@ -12,7 +12,11 @@ const job = new CronJob('*/5 * * * * *', function () {
                 let live_streams = streams['live'];
                 for (let stream in live_streams) {
                     if (!live_streams.hasOwnProperty(stream)) continue;
+<<<<<<< HEAD
                     // helpers.generateStreamThumbnail(stream);
+=======
+                    helpers.generateStreamThumbnail(stream);
+>>>>>>> ben
                 }
             }
         });

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { OAuthService, JwksValidationHandler } from 'angular-oauth2-oidc';
+import { authConfig } from './sso.config';
 
 @Component({
   selector: 'app-root',
@@ -6,7 +8,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  urlVideo = 'https://vod.vodgc.net/gid7/vod/vodgc/vodgc/28/18-284-8-GCZKTJ1538104527_480P.mp4/tracks-v1a1/index.m3u8';
-  // tslint:disable-next-line:max-line-length
-  urlPoster = 'https://store.storeimages.cdn-apple.com/4667/as-images.apple.com/is/image/AppleInc/aos/published/images/w/at/watch/modelheader/watch-modelheader-series4-hero-201809?wid=629&hei=383&fmt=jpeg&qlt=95&op_usm=0.5,0.5&.v=1536009686693';
+  title = 'sso-app';
+  public doLogin() {
+    this.oauthService.initImplicitFlow();
+  }
+  public doLogout () {
+    this.oauthService.logOut();
+  }
+  constructor (private oauthService: OAuthService) {
+    this.configureSingleSignOn();
+  }
+  configureSingleSignOn() {
+    this.oauthService.configure(authConfig);
+    this.oauthService.tokenValidationHandler= new JwksValidationHandler();
+    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    //this.oauthService.loadDiscoveryDocumentAndLogin();
+  }
+  get token() {
+    let claims: any= this.oauthService.getIdentityClaims();
+    return claims? claims: null; 
+  }
 }
+
