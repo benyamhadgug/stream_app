@@ -38,7 +38,7 @@ export class VideoJsComponent implements AfterViewInit {
       stream: false,
       videoJsOptions: null
     }
-    axios.get('http://127.0.0.1:3333/user', {
+    axios.get('http://3.132.119.22:3333/user', {
 
     // axios.get('/user', {
       params: {
@@ -53,7 +53,7 @@ export class VideoJsComponent implements AfterViewInit {
               autoplay: false,
               controls: true,
               sources: [{
-                  src: 'http://127.0.0.1:' + config.rtmp_server.http.port + '/live/' + res.data.stream_key + '/index.m3u8',
+                  src: 'http://3.132.119.22:' + config.rtmp_server.http.port + '/live/' + res.data.stream_key + '/index.m3u8',
                   type: 'application/x-mpegURL'
               }],
               fluid: true,

@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
+import axios from "axios";
+import { Observable } from 'rxjs';
+import { of as ObservableOf } from 'rxjs';
+import config from '../../config/default';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
@@ -7,9 +12,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SettingsComponent implements OnInit {
 
-  constructor() { }
+  state;
 
-  ngOnInit() {
+
+  constructor() { 
+    this.generateStreamKey = this.generateStreamKey.bind(this);
+
+
   }
 
+  ngOnInit() {
+
+    this.state = {
+      stream_key : ''
+    };
+
+
+    this.getStreamKey();
+
+  }
+
+  generateStreamKey(e){
+    axios.post('http://3.132.119.22:3333/settings/stream_key')
+        .then(res => {
+            this.stateUpdate({
+                stream_key : res.data.stream_key
+            });
+        })
+  }
+
+  getStreamKey(){
+    axios.get('http://3.132.119.22:3333/settings/stream_key')
+        .then(res => {
+            this.stateUpdate({
+                stream_key : res.data.stream_key
+            });
+        })
+  }
+  stateUpdate(lv:any){
+    this.state = lv;
+    console.log(`state`,this.state);
+
+  }
+ 
 }
