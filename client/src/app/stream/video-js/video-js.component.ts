@@ -27,6 +27,8 @@ export class VideoJsComponent implements AfterViewInit {
 
 
   ngAfterViewInit() {
+    // const options = null;
+
     if (this.vjs) {
       this.vjs.dispose()
     }

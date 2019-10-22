@@ -15,7 +15,7 @@ nms.on('prePublish', async (id, StreamPath, args) => {
                 let session = nms.getSession(id);
                 session.reject();
             } else {
-                helpers.generateStreamThumbnail(stream_key);
+                // helpers.generateStreamThumbnail(stream_key);
             }
         }
     });

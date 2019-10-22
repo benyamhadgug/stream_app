@@ -31,7 +31,7 @@ app.use(bodyParse.json({extended: true}));
 
 app.use(Session({
     store: new FileStore({
-        path : 'server/sessions'
+        path : 'sessions'
     }),
     secret: config.server.secret,
     maxAge : Date().now + (60 * 1000 * 30),
