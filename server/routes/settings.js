@@ -18,7 +18,7 @@ router.get('/stream_key',
 router.post('/stream_key',
     // require('connect-ensure-login').ensureLoggedIn(),
     (req, res) => {
-
+        
         User.findOneAndUpdate({
             email: req.user.email
         }, {

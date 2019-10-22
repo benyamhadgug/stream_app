@@ -1,9 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
 import axios from "axios";
-import { Observable } from 'rxjs';
-import { of as ObservableOf } from 'rxjs';
-import config from '../../config/default';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-settings',
