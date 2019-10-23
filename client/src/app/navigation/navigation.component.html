@@ -11,9 +11,12 @@
       <a mat-list-item [routerLink]="'stream'" >Home</a>
       <a mat-list-item [routerLink]="'login'" *ngIf="jwtService.isLoggeout()">Login</a>
       <a mat-list-item [routerLink]="'register'" *ngIf="jwtService.isLoggeout()">Register</a>
-      <a mat-list-item [routerLink]="'settings'" *ngIf="jwtService.isLoggedIn() && jwtService.isBroadcaster()" >Settings</a>
+      <a mat-list-item [routerLink]="''" *ngIf="jwtService.isLoggedIn() && (jwtService.isBroadcaster())">Statistics</a>      
+      <a mat-list-item [routerLink]="''" *ngIf="jwtService.isLoggedIn() && (!jwtService.isBroadcaster())">Subscriptions</a>      
+      <a mat-list-item [routerLink]="''" *ngIf="jwtService.isLoggedIn()">Profile</a>      
+      <a mat-list-item [routerLink]="'settings'" *ngIf="jwtService.isLoggedIn() && jwtService.isBroadcaster()">Settings</a>
       <a mat-list-item [routerLink]="'logout'" *ngIf="jwtService.isLoggedIn()" (click)="doLogout()">Logout</a>
-    
+
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
