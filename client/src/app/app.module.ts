@@ -21,7 +21,6 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { JwtModule } from '@auth0/angular-jwt';
 import { DeactivateGuard } from './guards/logout.guard';
-
 @NgModule({
   declarations: [
     AppComponent,
