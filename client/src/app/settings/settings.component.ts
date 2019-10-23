@@ -30,9 +30,7 @@ export class SettingsComponent implements OnInit {
 
   generateStreamKey(e){
     axios.post('http://3.132.119.22:3333/settings/stream_key',{
-      params: {
         user: this.email
-      }
     })
         .then(res => {
             this.stateUpdate({
