@@ -20,6 +20,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
 import { JwtModule } from '@auth0/angular-jwt';
+import { DeactivateGuard } from './guards/logout.guard';
 
 @NgModule({
   declarations: [
@@ -44,14 +45,14 @@ import { JwtModule } from '@auth0/angular-jwt';
       config: {
         tokenGetter: function  tokenGetter() {
              return     localStorage.getItem('access_token');},
-        whitelistedDomains: ['localhost:3333'],
-        blacklistedRoutes: ['http://localhost:3333/login']
+        whitelistedDomains: ['http://3.132.119.22:3333'],
+        blacklistedRoutes: ['http://3.132.119.22:3333/login']
       }
     }),
     BrowserAnimationsModule, 
     MatSliderModule, LayoutModule, MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule
   ],
-  providers: [],
+  providers: [DeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

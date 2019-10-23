@@ -7,6 +7,7 @@ import { LogoutComponent } from './user-management/logout/logout.component';
 import { SettingsComponent } from './settings/settings.component';
 
 
+import { DeactivateGuard } from './guards/logout.guard';
 
 
 const routes: Routes = [

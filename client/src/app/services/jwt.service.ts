@@ -10,11 +10,11 @@ export class JwtService {
       //console.log("before going to server: " + username + " ------- " + password);
       // return this.httpClient.post<any>('http://localhost:3333/login', {"username": username, "password":password})
       //         .subscribe((data)=> { data.access_token} );
-      return this.httpClient.post<any>('http://localhost:3333/login', {"username": username, "password":password}); 
+      return this.httpClient.post<any>('http://3.132.119.22:3333/login', {"username": username, "password":password}); 
       //.subscribe((data)=> { data.access_token} );
   }
   register(username: string, email:string, password:string, name: string, usergroup: string ) {
-    return this.httpClient.post<any>('http://localhost:3333/register', 
+    return this.httpClient.post<any>('http://3.132.119.22:3333/register', 
         {"email": email, "password": password, "username": username, "name": name, "usergroup": usergroup}); 
   }
   logout() {
@@ -31,9 +31,17 @@ export class JwtService {
   public isLoggedIn(): boolean {
     return localStorage.getItem('access_token') !==  null;
   }
+  public isLoggeout(): boolean {
+    return localStorage.getItem('access_token') ===  null;
+  }
   public isBroadcaster(): boolean {
     if(localStorage.getItem('usergroup') ===  null)
       return false; 
     return (localStorage.getItem('usergroup') === "B");
+  }
+  public isViewer(): boolean {
+    if(localStorage.getItem('usergroup') ===  null)
+      return false; 
+    return (localStorage.getItem('usergroup') === "V");
   }
 }
