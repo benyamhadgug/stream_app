@@ -21,6 +21,6 @@ export class NavigationComponent {
   
   public doLogout() {
     this.jwtService.logout();
-    this.router.navigate(['home']);
+    this.router.navigate(['stream']);
   }
 }

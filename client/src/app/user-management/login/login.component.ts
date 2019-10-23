@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("email", data.user.email);
             localStorage.setItem("stream_key", data.user.stream_key);
             this.loginError=false; 
-            this.router.navigate(['home']);
+            this.router.navigate(['stream']);
           }else {
             this.loginError=true; 
           }
