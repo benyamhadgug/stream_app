@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, Input } from '@angular/core';
+import { Component, AfterViewInit, Input, OnInit, OnDestroy } from '@angular/core';
 import videojs from 'video.js';
 import axios from "axios";
 import { Observable } from 'rxjs';
@@ -11,7 +11,8 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './video-js.component.html',
   styleUrls: ['./video-js.component.css']
 })
-export class VideoJsComponent implements AfterViewInit {
+export class VideoJsComponent implements OnDestroy, OnInit {
+
   public vjs: videojs.Player;
   stream$: {};
   _state;
@@ -26,10 +27,12 @@ export class VideoJsComponent implements AfterViewInit {
   }
 
 
-  ngAfterViewInit() {
+  ngOnInit() {
     // const options = null;
 
     if (this.vjs) {
+      console.log(`Player disposed:::`);
+
       this.vjs.dispose()
     }
     // this.vjs = videojs('stream-player', options);
@@ -67,8 +70,9 @@ export class VideoJsComponent implements AfterViewInit {
     
   }
 
-  ngOnChanges() {
-  
+  ngOnDestroy() {
+    this.vjs.dispose()
+
   }
   
   stateUpdate(lv:any){

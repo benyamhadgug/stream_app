@@ -14,14 +14,13 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent}, 
   {path: 'register', component: RegisterComponent}, 
   {path: 'logout', component: LogoutComponent}, 
-  {path: '**', component: HomeComponent},
+  // {path: '**', component: HomeComponent},
   {path: 'settings', component:SettingsComponent },
-  {path: 'stream', loadChildren:()=> import('./stream/stream.module').then(m=> m.StreamModule)}
-
+  {path: 'stream', loadChildren:()=> import('./stream/stream.module').then(m=> m.StreamModule),  runGuardsAndResolvers: 'always'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{onSameUrlNavigation: 'reload'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -11,7 +11,7 @@ const express = require('express'),
     port = config.server.port,
     app = express(),
     node_media_server = require('./media_server'),
-    thumbnail_generator = require('./cron/thumbnails');
+    thumbnail_generator = require('./cron/thumbnails'),
     cors = require('cors');
 
  
