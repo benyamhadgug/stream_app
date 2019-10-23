@@ -1,9 +1,7 @@
 const NodeMediaServer = require('node-media-server'),
     config = require('./config/default').rtmp_server,
     User = require('./database/Schema').User,
-    helpers = require('./helpers/helpers');
-
-nms = new NodeMediaServer(config);
+    nms = new NodeMediaServer(config);
 
 nms.on('prePublish', async (id, StreamPath, args) => {
     let stream_key = getStreamKeyFromStreamPath(StreamPath);

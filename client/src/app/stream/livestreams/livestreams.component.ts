@@ -38,7 +38,7 @@ export class LivestreamsComponent implements OnInit , OnChanges, AfterContentChe
     axios.get('http://3.132.119.22:' + config.rtmp_server.http.port + '/api/streams')
         .then(res => {
             let streams = res.data;
-            console.log(`res data:`, streams['live']);
+            // console.log(`res data:`, streams['live']);
             if (typeof (streams['live'] !== 'undefined')) {
                 this.getStreamsInfo(streams['live']);
             }
@@ -52,14 +52,14 @@ export class LivestreamsComponent implements OnInit , OnChanges, AfterContentChe
             streams: live_streams
         }
     }).then((res) =>{
-      console.log(`state red data`,res.data);
+      // console.log(`state red data`,res.data);
       this.stateUpdate(res.data);
           // this._state = {
           //   live_streams: res.data
           // };
                   // live_streams: res.data
         }, () => {
-            console.log(`state`,this._state);
+            // console.log(`state`,this._state);
         
         });
   }
@@ -68,7 +68,7 @@ export class LivestreamsComponent implements OnInit , OnChanges, AfterContentChe
     this._state = {
       live_streams: lv
     };
-    console.log(`state`,this._state);
+    // console.log(`state`,this._state);
     this.stream$ =ObservableOf(this._state.live_streams);
 
   }

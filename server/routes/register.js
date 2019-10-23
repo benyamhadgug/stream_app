@@ -1,8 +1,7 @@
 const express = require('express'),
     router = express.Router(),
-    passport = require('passport');
-User = require('../database/Schema').User; 
-shortid = require('shortid');
+    User = require('../database/Schema').User; 
+    shortid = require('shortid');
 
 router.post('/', (req, res) => {
     //let name= {"name": req.body.name, "username": req.body.username, "password": req.body.password, "email": req.body.email, "usergroup": req.body.usergroup};

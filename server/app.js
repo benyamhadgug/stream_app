@@ -2,7 +2,6 @@ const express = require('express'),
     path = require('path'),
     Session = require('express-session'),
     bodyParse = require('body-parser'),
-    passport = require('./auth/passport'),
     mongoose = require('mongoose'),
     middleware = require('connect-ensure-login'),
     FileStore = require('session-file-store')(Session),
@@ -11,7 +10,6 @@ const express = require('express'),
     port = config.server.port,
     app = express(),
     node_media_server = require('./media_server'),
-    thumbnail_generator = require('./cron/thumbnails'),
     cors = require('cors');
 
 
@@ -21,7 +19,6 @@ const uri = config.server.db_url;
 mongoose.connect(uri, { useNewUrlParser: true });
 
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, './views'));
 app.use(express.static('public'));
 app.use('/thumbnails', express.static('server/thumbnails'));
 app.use(flash());
@@ -41,8 +38,6 @@ app.use(Session({
     saveUninitialized : false,
 }));
 
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use(cors());
 
@@ -64,4 +59,3 @@ app.get('*', middleware.ensureLoggedIn(), (req, res) => {
 
 app.listen(port, () => console.log(`App listening on ${port}!`));
 node_media_server.run();
-thumbnail_generator.start();

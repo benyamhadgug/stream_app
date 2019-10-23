@@ -23,7 +23,7 @@ export class VideoJsComponent implements OnDestroy, OnInit {
 
   constructor(private route : ActivatedRoute) { 
     route.params.subscribe(params=>{this.usernme= params['username']})
-    console.log(`username:::`,this.usernme);
+    // console.log(`username:::`,this.usernme);
   }
 
 
@@ -31,7 +31,7 @@ export class VideoJsComponent implements OnDestroy, OnInit {
     // const options = null;
 
     if (this.vjs) {
-      console.log(`Player disposed:::`);
+      // console.log(`Player disposed:::`);
 
       this.vjs.dispose()
     }
@@ -48,7 +48,7 @@ export class VideoJsComponent implements OnDestroy, OnInit {
           username: this.usernme
       }
     }).then(res => {
-      console.log(`state res`,res);
+      // console.log(`state res`,res);
 
       this.stateUpdate({
           stream: true,
@@ -78,10 +78,10 @@ export class VideoJsComponent implements OnDestroy, OnInit {
   stateUpdate(lv:any){
     this._state = lv;
     this.stream$ =this._state;
-    console.log(`state`,this.stream$);
+    // console.log(`state`,this.stream$);
 
     this.vjs = videojs('stream-player', this._state.videoJsOptions, function onPlayerReady() {
-      console.log('onPlayerReady', this)
+      // console.log('onPlayerReady', this)
     });
 
   }

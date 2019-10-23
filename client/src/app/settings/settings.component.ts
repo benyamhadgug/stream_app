@@ -53,7 +53,7 @@ export class SettingsComponent implements OnInit {
   }
   stateUpdate(lv:any){
     this.state = lv;
-    console.log(`state`,this.state);
+    // console.log(`state`,this.state);
 
   }
  
