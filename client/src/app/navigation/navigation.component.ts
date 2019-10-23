@@ -17,7 +17,7 @@ export class NavigationComponent {
       map(result => result.matches)
     );
     
-  constructor(private breakpointObserver: BreakpointObserver,  private jwtService: JwtService , private router: Router) {}
+  constructor(private breakpointObserver: BreakpointObserver,  public jwtService: JwtService , private router: Router) {}
   
   public doLogout() {
     this.jwtService.logout();
