@@ -10,10 +10,10 @@ export class SettingsComponent implements OnInit {
 
   state;
 
-
+  email: string; 
   constructor() { 
     this.generateStreamKey = this.generateStreamKey.bind(this);
-
+    this.email= localStorage.getItem("email");
 
   }
 
@@ -29,7 +29,11 @@ export class SettingsComponent implements OnInit {
   }
 
   generateStreamKey(e){
-    axios.post('http://3.132.119.22:3333/settings/stream_key')
+    axios.post('http://3.132.119.22:3333/settings/stream_key',{
+      params: {
+        user: this.email
+      }
+    })
         .then(res => {
             this.stateUpdate({
                 stream_key : res.data.stream_key
@@ -38,7 +42,11 @@ export class SettingsComponent implements OnInit {
   }
 
   getStreamKey(){
-    axios.get('http://3.132.119.22:3333/settings/stream_key')
+    axios.get('http://3.132.119.22:3333/settings/stream_key',{
+      params: {
+        user: this.email
+      }
+    })
         .then(res => {
             this.stateUpdate({
                 stream_key : res.data.stream_key

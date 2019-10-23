@@ -6,7 +6,7 @@ const express = require('express'),
 router.get('/stream_key',
     // require('connect-ensure-login').ensureLoggedIn(),
     (req, res) => {
-        User.findOne({email: req.user.email}, (err, user) => {
+        User.findOne({email: req.user}, (err, user) => {
             if (!err) {
                 res.json({
                     stream_key: user.stream_key
@@ -21,7 +21,7 @@ router.post('/stream_key',
     (req, res) => {
 
         User.findOneAndUpdate({
-            email: req.user.email
+            email: req.user
         }, {
             stream_key: shortid.generate()
         }, {
