@@ -1,7 +1,8 @@
 const config = {
     server: {
         secret: 'kjVkuti2xAyF3JGCzSZTk0YWM5JhI9mgQW4rytXc',
-        port : 3333
+        port : 3333,
+        db_url: "mongodb+srv://tim:E6WRXq81xa8z2qW3@mwacluster-moqqw.mongodb.net/streaming_app_db?retryWrites=true&w=majority"
     },
     rtmp_server: {
         rtmp: {

@@ -14,8 +14,8 @@ const express = require('express'),
     thumbnail_generator = require('./cron/thumbnails'),
     cors = require('cors');
 
- 
-const uri = "mongodb+srv://tim:E6WRXq81xa8z2qW3@mwacluster-moqqw.mongodb.net/streaming_app_db?retryWrites=true&w=majority";
+
+const uri = config.server.db_url;
 
 
 mongoose.connect(uri, { useNewUrlParser: true });
