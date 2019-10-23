@@ -6,6 +6,8 @@ import { LivestreamsComponent } from './livestreams/livestreams.component';
 import { StreamComponent } from './stream.component';
 import { AvatarModule } from 'ngx-avatar';
 import { HttpClientModule } from '@angular/common/http';
+import { NavigationComponent } from '../navigation/navigation.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 const routes: Routes = [
   
@@ -17,14 +19,18 @@ const routes: Routes = [
   declarations: [
     VideoJsComponent,
     LivestreamsComponent,
-    StreamComponent
+    StreamComponent,
+    NavigationComponent
+
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     HttpClientModule,
     AvatarModule
-  ]
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+
 })
 export class StreamModule {
   urlVideo = 'https://vod.vodgc.net/gid7/vod/vodgc/vodgc/28/18-284-8-GCZKTJ1538104527_480P.mp4/tracks-v1a1/index.m3u8';

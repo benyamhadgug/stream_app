@@ -21,7 +21,9 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
   registerError=false; 
-  errorMessage=""
+  errorMessage="";
+  Roles: any = ['Viewer', 'Broadcaster'];
+
   constructor(private formBuilder: FormBuilder, private jwtService: JwtService, private router: Router) { 
   }
 

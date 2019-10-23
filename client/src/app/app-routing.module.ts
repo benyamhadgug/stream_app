@@ -13,6 +13,10 @@ import { DeactivateGuard } from './guards/logout.guard';
 
 const routes: Routes = [
   {path: '', component: StreamComponent}, 
+  // { path: '', pathMatch: 'full', redirectTo: 'login' },
+  {path: 'about', component: HomeComponent}, 
+  // {path: 'home', loadChildren:()=> import('./home/home.module').then(m=> m.HomeModule)},
+
   // {path: '', loadChildren:()=> import('./stream/stream.module').then(m=> m.StreamModule)}, 
   {path: 'stream', loadChildren:()=> import('./stream/stream.module').then(m=> m.StreamModule)},
   {path: 'login', component: LoginComponent}, 
