@@ -6,6 +6,7 @@ const express = require('express'),
 router.get('/stream_key',
     // require('connect-ensure-login').ensureLoggedIn(),
     (req, res) => {
+        console.log(`Stream Key Post::`,req.user);
         User.findOne({email: req.user}, (err, user) => {
             if (!err) {
                 res.json({
@@ -19,6 +20,7 @@ router.post('/stream_key',
 
     // require('connect-ensure-login').ensureLoggedIn(),
     (req, res) => {
+        console.log(`Stream Key Post::`,req.user);
 
         User.findOneAndUpdate({
             email: req.user
